@@ -3,10 +3,11 @@
  * @Author: Daito Chai
  * @Date: 2021-04-05 20:31:25
  * @LastEditors: Daito Chai
- * @LastEditTime: 2021-04-05 20:33:46
+ * @LastEditTime: 2021-04-05 21:10:38
  */
 
 (function (modules) {
+    console.log(modules)
     function require(id) {
         const [fn, mapping] = modules[id]
 

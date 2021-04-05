@@ -3,7 +3,7 @@
  * @Author: Daito Chai
  * @Date: 2021-04-05 16:18:15
  * @LastEditors: Daito Chai
- * @LastEditTime: 2021-04-05 20:33:19
+ * @LastEditTime: 2021-04-05 21:14:15
  */
 
 const fs = require('fs')
@@ -86,6 +86,8 @@ function bundle(graph) {
     let modules = ''
 
     graph.forEach(mod => {
+        // require, module, exports
+        // 以 CMD 规范模块化
         modules += `
             ${mod.id}: [
                 function (require, module, exports) {
@@ -95,9 +97,11 @@ function bundle(graph) {
             ],
         `
     })
-
+    console.log(modules);
+    console.log('--------------------------------------------------------------------');
     const result = `
         (function(modules) {
+            console.log(modules)
             function require(id) {
                 const [fn, mapping] = modules[id]
 
@@ -132,6 +136,7 @@ console.log(result);
 // ————————————————————————————————————编译结果↓↓↓↓↓↓↓↓↓↓
 
 // (function (modules) {
+//     console.log(modules)
 //     function require(id) {
 //         const [fn, mapping] = modules[id]
 
